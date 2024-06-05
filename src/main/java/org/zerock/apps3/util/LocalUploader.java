@@ -30,7 +30,7 @@ public class LocalUploader {
         // 파일이름이 겹치지 않도록 UUID 를 생성
     String uuid = UUID.randomUUID().toString();
         // UUID_ 파일이름. 확장자 방식으로 파일 이름 생성
-    String saveFileName = uuid + "-" + multipartFile.getOriginalFilename();
+    String saveFileName = uuid + "_" + multipartFile.getOriginalFilename();
         // 파일이 저장될 위치 설정
         Path savePath = Paths.get(uploadPath, saveFileName);
         // List로 설정하여 원본 파일과 썸네일 파일의 이름을 반환할 수 있도록 설정
@@ -50,7 +50,7 @@ public class LocalUploader {
                 Thumbnailator.createThumbnail(savePath.toFile(), thumbFile, 200, 200);
             }
         }catch (Exception e){
-            log.error("ERROR: " + e.getMessage());
+            e.printStackTrace();
         }
         return savePathList;
     }
